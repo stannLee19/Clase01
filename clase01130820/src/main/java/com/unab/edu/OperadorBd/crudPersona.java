@@ -5,7 +5,12 @@
  */
 package com.unab.edu.OperadorBd;
 
+import com.unab.edu.DAO.ClsPersona;
+import com.unab.edu.Entidades.Persona;
 import com.unab.edu.conexionmysql.ConexionBd;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +23,29 @@ public class crudPersona extends javax.swing.JFrame {
      */
     public crudPersona() {
         initComponents();
+        MostrarTablaPersona();
+
+    }
+
+    void MostrarTablaPersona() {
+
+        String TITULOS[] = {"ID", "NOMBRE", "APELLIDO", "EDAD", "SEXO"};
+        DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
+        ClsPersona ClasePersona = new ClsPersona();
+        ArrayList<Persona> Personas = ClasePersona.MostrarPersona();
+        String filas[] = new String[5];
+        for (var IterarDatosPersona : Personas) {
+            filas[0] = String.valueOf(IterarDatosPersona.getIdPersona());
+            filas[1] = IterarDatosPersona.getNombre();
+            filas[2] = IterarDatosPersona.getApellido();
+            filas[3] = String.valueOf(IterarDatosPersona.getEdad());
+            filas[4] = IterarDatosPersona.getSexo();
+            ModeloTabla.addRow(filas);
+        
+        
+        }
+        tb_persona.setModel(ModeloTabla);
+
     }
 
     /**
@@ -49,7 +77,7 @@ public class crudPersona extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_persona = new javax.swing.JTable();
 
         jScrollPane2.setViewportView(jTree1);
 
@@ -151,7 +179,7 @@ public class crudPersona extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Operaciones de CRUD", jPanel1);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_persona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -162,7 +190,7 @@ public class crudPersona extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_persona);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,10 +235,10 @@ public class crudPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       ConexionBd claseconectar = new ConexionBd();
-       Connction conectar = (Connction) claseconectar.retornarConexion();
-       
-      
+        ConexionBd claseconectar = new ConexionBd();
+        Connection conectar = claseconectar.retornarConexion();
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -263,8 +291,8 @@ public class crudPersona extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTree jTree1;
+    private javax.swing.JTable tb_persona;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtId;
