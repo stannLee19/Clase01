@@ -32,7 +32,7 @@ public class crudPersona extends javax.swing.JFrame {
         String TITULOS[] = {"ID", "NOMBRE", "APELLIDO", "EDAD", "SEXO"};
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
         ClsPersona ClasePersona = new ClsPersona();
-        ArrayList<Persona> Personas = ClasePersona.MostrarPersona();
+        var Personas = ClasePersona.MostrarPersona();
         String filas[] = new String[5];
         for (var IterarDatosPersona : Personas) {
             filas[0] = String.valueOf(IterarDatosPersona.getIdPersona());
@@ -41,8 +41,7 @@ public class crudPersona extends javax.swing.JFrame {
             filas[3] = String.valueOf(IterarDatosPersona.getEdad());
             filas[4] = IterarDatosPersona.getSexo();
             ModeloTabla.addRow(filas);
-        
-        
+
         }
         tb_persona.setModel(ModeloTabla);
 
@@ -101,12 +100,27 @@ public class crudPersona extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton2.setText("Elimiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton3.setText("Actualizar Datos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("probar conexion");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +156,7 @@ public class crudPersona extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
-                        .addGap(0, 86, Short.MAX_VALUE)))
+                        .addGap(0, 128, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -174,7 +188,7 @@ public class crudPersona extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Operaciones de CRUD", jPanel1);
@@ -196,17 +210,13 @@ public class crudPersona extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Mostrar Datos", jPanel2);
@@ -215,16 +225,13 @@ public class crudPersona extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 78, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(558, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,6 +247,39 @@ public class crudPersona extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ClsPersona Personas = new ClsPersona();
+        Persona Persona = new Persona();
+        Persona.setNombre(txtNombre.getText());
+        Persona.setApellido(txtApellido.getText());
+        Persona.setEdad(Integer.parseInt(txtEdad.getText()));
+        Persona.setSexo(txtsexo.getText());
+
+        Personas.AgregarPersona(Persona);
+        MostrarTablaPersona();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ClsPersona Personas = new ClsPersona();
+        Persona Persona = new Persona();
+        Persona.setIdPersona(Integer.parseInt(txtId.getText()));
+        Personas.BorrarPersona(Persona);
+        MostrarTablaPersona();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+           ClsPersona Personas = new ClsPersona();
+        Persona Persona = new Persona();
+         Persona.setIdPersona(Integer.parseInt(txtId.getText()));
+        Persona.setNombre(txtNombre.getText());
+        Persona.setApellido(txtApellido.getText());
+        Persona.setEdad(Integer.parseInt(txtEdad.getText()));
+        Persona.setSexo(txtsexo.getText());
+
+        Personas.ActualizarPersona(Persona);
+        MostrarTablaPersona();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
