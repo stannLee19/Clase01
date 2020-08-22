@@ -85,7 +85,7 @@ public class ClsPersona {
             Statement.setInt("PEdad", Persona.getEdad());
             Statement.setString("PSexo", Persona.getSexo());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, " Persona guardada");
+            JOptionPane.showMessageDialog(null, " Persona Actualizada Correctamente");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
