@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.unab.edu.OperadorBd;
+package com.unab.edu.Vista;
 
 import com.unab.edu.DAO.ClsPersona;
 import com.unab.edu.Entidades.Persona;
@@ -58,7 +58,7 @@ public class crudPersona extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tbpaneMostrarPersona = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
@@ -191,7 +191,7 @@ public class crudPersona extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Operaciones de CRUD", jPanel1);
+        tbpaneMostrarPersona.addTab("Operaciones de CRUD", jPanel1);
 
         tb_persona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,6 +204,11 @@ public class crudPersona extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_persona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_personaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_persona);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -219,18 +224,18 @@ public class crudPersona extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Mostrar Datos", jPanel2);
+        tbpaneMostrarPersona.addTab("Mostrar Datos", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tbpaneMostrarPersona)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbpaneMostrarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -281,6 +286,27 @@ public class crudPersona extends javax.swing.JFrame {
         MostrarTablaPersona();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void tb_personaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_personaMouseClicked
+       
+        //movilizacion del tbpane
+        tbpaneMostrarPersona.setSelectedIndex(tbpaneMostrarPersona.indexOfComponent(jPanel1));
+        //obtener la fila del usuario seleccionado
+        int fila = tb_persona.getSelectedRow();
+        
+        // getvalueat sirve  para capturar datos de las tablas 
+        String ID = String.valueOf(tb_persona.getValueAt(fila, 0) );
+        String nombre = String.valueOf(tb_persona.getValueAt(fila, 1) );
+        String apellido = String.valueOf(tb_persona.getValueAt(fila, 2) );
+           String edad = String.valueOf(tb_persona.getValueAt(fila, 3) );
+              String sexo = String.valueOf(tb_persona.getValueAt(fila, 4) );
+        
+        txtId.setText(ID);
+        txtNombre.setText(nombre);
+        txtApellido.setText(apellido);
+        txtEdad.setText(edad);
+        txtsexo.setText(sexo);
+    }//GEN-LAST:event_tb_personaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -330,9 +356,9 @@ public class crudPersona extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTree jTree1;
     private javax.swing.JTable tb_persona;
+    private javax.swing.JTabbedPane tbpaneMostrarPersona;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtId;
