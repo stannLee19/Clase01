@@ -5,10 +5,22 @@
  */
 package com.unab.edu.Entidades;
 
+import lombok.*;
+
+
+
 /**
  *
  * @author Stanly
  */
-public class Estudiante {
+@Data
+@EqualsAndHashCode(callSuper=false)
+public class Estudiante extends Persona{
     
+    private int Id;
+    private int matricula;
+    private String Usu;
+    private String pass;
+    private String USU;
+    private String PASS;
 }

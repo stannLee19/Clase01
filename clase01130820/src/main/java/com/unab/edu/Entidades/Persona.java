@@ -15,11 +15,11 @@ import lombok.Data;
 
 public class Persona {
 
-    private int idPersona;
-    private String Nombre;
-    private String Apellido;
-    private int Edad;
-    private String sexo;
+    protected int idPersona;
+    protected String Nombre;
+    protected String Apellido;
+    protected int Edad;
+    protected String sexo;
 
     
 }

@@ -304,7 +304,7 @@ public class crudPersona extends javax.swing.JFrame {
         txtNombre.setText(nombre);
         txtApellido.setText(apellido);
         txtEdad.setText(edad);
-        txtsexo.setText(sexo);
+        txtsexo.setText(sexo );
     }//GEN-LAST:event_tb_personaMouseClicked
 
     /**
