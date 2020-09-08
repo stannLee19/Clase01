@@ -46,6 +46,10 @@ public class crudPersona extends javax.swing.JFrame {
         tb_persona.setModel(ModeloTabla);
 
     }
+   
+
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.

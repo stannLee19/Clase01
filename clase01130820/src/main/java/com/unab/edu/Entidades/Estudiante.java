@@ -23,4 +23,5 @@ public class Estudiante extends Persona{
     private String pass;
     private String USU;
     private String PASS;
+    private String NIE;
 }
