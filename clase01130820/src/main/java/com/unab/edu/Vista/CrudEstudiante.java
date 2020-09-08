@@ -155,6 +155,11 @@ public class CrudEstudiante extends javax.swing.JFrame {
                 "Title 1", "Title 2"
             }
         ));
+        Tb_mostrarselecionpersona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tb_mostrarselecionpersonaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(Tb_mostrarselecionpersona);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -338,6 +343,13 @@ public class CrudEstudiante extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_tb_mostrarestudianteMouseClicked
+
+    private void Tb_mostrarselecionpersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tb_mostrarselecionpersonaMouseClicked
+       
+        int fila = Tb_mostrarselecionpersona.getSelectedRow();
+        String Id =  String.valueOf(Tb_mostrarselecionpersona.getValueAt(fila, 2));
+        txtIDpersona.setText(Id);
+    }//GEN-LAST:event_Tb_mostrarselecionpersonaMouseClicked
 
     /**
      * @param args the command line arguments
