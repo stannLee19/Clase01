@@ -283,7 +283,7 @@ public class CrudEstudiante extends javax.swing.JFrame {
 
         ClsEstudiante estu = new ClsEstudiante();
         Estudiante es = new Estudiante();
-        es.setId(Integer.parseInt(txtIDEstuiante.getText()));
+        //es.setId(Integer.parseInt(txtIDEstuiante.getText()));
         es.setMatricula(Integer.parseInt(txtmatricula.getText()));
         es.setIdPersona(Integer.parseInt(txtIDpersona.getText()));
         es.setUsu(txtUSUARIO.getText());
@@ -347,7 +347,7 @@ public class CrudEstudiante extends javax.swing.JFrame {
     private void Tb_mostrarselecionpersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tb_mostrarselecionpersonaMouseClicked
        
         int fila = Tb_mostrarselecionpersona.getSelectedRow();
-        String Id =  String.valueOf(Tb_mostrarselecionpersona.getValueAt(fila, 2));
+        String Id =  String.valueOf(Tb_mostrarselecionpersona.getValueAt(fila, 0));
         txtIDpersona.setText(Id);
     }//GEN-LAST:event_Tb_mostrarselecionpersonaMouseClicked
 

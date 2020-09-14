@@ -6,6 +6,7 @@
 package com.unab.edu.Vista;
 
 import com.unab.edu.DAO.ClsEstudiante;
+import com.unab.edu.DAO.ClsProfesor;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,12 +31,19 @@ public class frmLoging extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        gbOpciones = new javax.swing.ButtonGroup();
         txtuser = new javax.swing.JTextField();
-        txtpass = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtpas = new javax.swing.JPasswordField();
+        OpcEstudiante = new javax.swing.JRadioButton();
+        OpcProfesor = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jButton1.setFont(new java.awt.Font("Bookman Old Style", 3, 18)); // NOI18N
         jButton1.setText("Entrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,51 +51,113 @@ public class frmLoging extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 2, 14)); // NOI18N
+        jLabel1.setText("Usuario");
+
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semilight", 2, 14)); // NOI18N
+        jLabel2.setText("Password");
+
+        gbOpciones.add(OpcEstudiante);
+        OpcEstudiante.setFont(new java.awt.Font("Segoe Print", 2, 12)); // NOI18N
+        OpcEstudiante.setText("Estudiante");
+
+        gbOpciones.add(OpcProfesor);
+        OpcProfesor.setFont(new java.awt.Font("Segoe Print", 2, 12)); // NOI18N
+        OpcProfesor.setText("Profesor");
+
+        jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 2, 18)); // NOI18N
+        jLabel3.setText("Bienvenido/a");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtpas, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(118, 118, 118))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(151, 151, 151))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(OpcEstudiante)
+                                .addGap(53, 53, 53)
+                                .addComponent(OpcProfesor))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
                 .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel2)
+                .addGap(36, 36, 36)
+                .addComponent(txtpas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OpcEstudiante)
+                    .addComponent(OpcProfesor))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(43, 43, 43))
+                .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ClsEstudiante est = new ClsEstudiante();
-        String  user = txtuser.getText();
-        String pass = txtpass.getText();
-        
-        
-        var variablecontenedordeconsultaBd = est.LoguinEstudiante(user, pass);
-        
-        if(variablecontenedordeconsultaBd == true){
-            JOptionPane.showMessageDialog(null, "Welcome ");
-        }else{
-         JOptionPane.showMessageDialog(null, "Stop ");
-        }
+
+        String user = txtuser.getText();
+        String pass = txtpas.getText();
+
+        if (!user.isEmpty() && !pass.isEmpty()) {
+            if (OpcEstudiante.isSelected()) {
+                ClsEstudiante est = new ClsEstudiante();
+                var variablecontenedordeconsultaBd = est.LoguinEstudiante(user, pass);
+
+                if (variablecontenedordeconsultaBd == true) {
+                    JOptionPane.showMessageDialog(null, "Welcome Estudiante!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error usario equivocado ¡verificalo!  ");
+                }
+            } else if (OpcProfesor.isSelected()) {
+                ClsProfesor prof= new ClsProfesor();
+                var existe=prof.LoguinProfesor(user, pass);
+                if (existe == true) {
+                    JOptionPane.showMessageDialog(null, "Welcome Profesor!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error en las credenciales ¡verificalo!  ");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "llena los campos");
+            }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+     else {
+
+            JOptionPane.showMessageDialog(null, "llena los campos");
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -125,8 +195,14 @@ public class frmLoging extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton OpcEstudiante;
+    private javax.swing.JRadioButton OpcProfesor;
+    private javax.swing.ButtonGroup gbOpciones;
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextField txtpass;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField txtpas;
     private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }

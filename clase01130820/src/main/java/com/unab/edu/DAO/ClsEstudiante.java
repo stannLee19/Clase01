@@ -25,42 +25,57 @@ public class ClsEstudiante {
     Connection conectar = claseconectar.retornarConexion();
 
     public boolean LoguinEstudiante(String usuario, String Pass) {
-        ArrayList<Estudiante> ListaUsuariosPass = new ArrayList<>();
-
+        ArrayList<Estudiante> ListaUsuarios = new ArrayList<>();
+        ArrayList<Estudiante> ListarContra = new ArrayList<>();
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_S_LoguinEstudiante(?,?)");
-            Statement.setString("pusuario", usuario);
-            Statement.setString("ppass", Pass);
+            CallableStatement st = conectar.prepareCall("call SP_S_LoguinEstudiante(?,?)");
 
-            ResultSet resultadoDeConsulta = Statement.executeQuery();
-
-            while (resultadoDeConsulta.next()) {
-
+            st.setString("pusuario", usuario);
+            st.setString("ppass", Pass);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
                 Estudiante es = new Estudiante();
-                es.setUsu(resultadoDeConsulta.getString("USU"));
-                es.setPass(resultadoDeConsulta.getString("PASS"));
-                ListaUsuariosPass.add(es);
+                es.setUsu(rs.getNString("USU"));
+                es.setPass(rs.getNString("PASS"));
+                ListaUsuarios.add(es);
+            }
+            String usuariodebasedatos = null;
+            String passdebasededatos = null;
+            for (var iterador : ListaUsuarios) {
+                usuariodebasedatos = iterador.getUsu();
+                passdebasededatos = iterador.getPass();
 
             }
-            String usuariodebasededatos = null;
-            String pasdebasededaros = null;
-            for (var iterador : ListaUsuariosPass) {
 
-                usuariodebasededatos = iterador.getUsu();
-                pasdebasededaros = iterador.getPass();
+            CallableStatement st2 = conectar.prepareCall("call Sp_s_Crip(?)");
+            st2.setString("PcripPass", Pass);
+            ResultSet rs2 = st2.executeQuery();
+            while (rs2.next()) {
+                Estudiante escrip = new Estudiante();
+
+                escrip.setPass(rs2.getNString("crip"));
+                ListarContra.add(escrip);
+            }
+
+            String passcrip = null;
+            for (var iterador : ListarContra) {
+
+                passcrip = iterador.getPass();
+
+                Pass = passcrip;
 
             }
-            if (usuariodebasededatos.equals(usuario) && pasdebasededaros.equals(Pass)) {
+           
+            
+            if(usuariodebasedatos!=null &&passdebasededatos!=null ){
+            if (usuariodebasedatos.equals(usuario) && passdebasededatos.equals(Pass)) {
                 return true;
-
+            }
             }
             conectar.close();
-
         } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Error" + e);
         }
-
         return false;
     }
 
@@ -82,7 +97,7 @@ public class ClsEstudiante {
                 est.setNIE(RS.getString("NIE"));
 
                 Estudiantes.add(est);
-                
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -93,7 +108,7 @@ public class ClsEstudiante {
 
     public void GuardarEstudiante(Estudiante Estu) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_ESTUDIANTE(?,?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_I_ESTUDIANTE (?,?,?,?,?);");
 
             Statement.setInt("Pmatricula", Estu.getMatricula());
             Statement.setInt("PidPersona", Estu.getIdPersona());
@@ -101,8 +116,8 @@ public class ClsEstudiante {
             Statement.setString("pPASS", Estu.getPass());
             Statement.setString("pNIE", Estu.getNIE());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, " Estud iante guardado con exito");
-          
+            JOptionPane.showMessageDialog(null, " Estudiante guardado con exito");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -115,7 +130,7 @@ public class ClsEstudiante {
             Statement.setInt("PIDestduaintes", Estu.getId());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Estudiante Eliminado");
-           
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -124,15 +139,15 @@ public class ClsEstudiante {
 
     public void ActualizarEstuiante(Estudiante Estu) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_U_ESTUDIANTE(?,?,?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_U_ESTUDIANTE(?,?,?,?,?,?,?)");
             Statement.setInt("pIDestudiantes", Estu.getId());
             Statement.setInt("pMatricula", Estu.getMatricula());
             Statement.setInt("pIDpersonas", Estu.getIdPersona());
             Statement.setString("pUSUARIO", Estu.getUsu());
             Statement.setString("pPassword", Estu.getPass());
-            Statement.setString("pNie", Estu.getNIE());
+            Statement.setString("pNIE", Estu.getNIE());
             Statement.execute();
-           
+
             JOptionPane.showMessageDialog(null, " Estudiante Actualizado Correctamente");
 
         } catch (Exception e) {

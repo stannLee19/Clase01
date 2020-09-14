@@ -5,7 +5,8 @@
  */
 package com.unab.edu.Entidades;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
@@ -13,13 +14,12 @@ import lombok.*;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Estudiante extends Persona {
+public class Profesor {
 
-    private int Id;
-    private int matricula;
-    private String Usu;
-    private String Pass;
-    private String USU;
-    private String PASS;
-    private String NIE;
+    private int idprofesor;
+    private int IDPERSONA;
+    private String Dui;
+    private String Usuariop;
+    private String Passp;
+
 }
