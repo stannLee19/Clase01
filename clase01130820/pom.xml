@@ -25,7 +25,11 @@
 		<version>1.18.12</version>
 		<scope>provided</scope>
 	</dependency>
-     
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
+        </dependency>
     </dependencies>
     <name>clase02082020</name>
 </project>

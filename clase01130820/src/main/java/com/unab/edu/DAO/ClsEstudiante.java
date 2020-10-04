@@ -13,6 +13,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,9 +30,12 @@ public class ClsEstudiante {
         ArrayList<Estudiante> ListarContra = new ArrayList<>();
         try {
             CallableStatement st = conectar.prepareCall("call SP_S_LoguinEstudiante(?,?)");
-
+            
+            
+        
             st.setString("pusuario", usuario);
             st.setString("ppass", Pass);
+           
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Estudiante es = new Estudiante();

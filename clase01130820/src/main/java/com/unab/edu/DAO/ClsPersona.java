@@ -36,6 +36,7 @@ public class ClsPersona {
                 persona.setApellido(resultadoDeConsulta.getString("Apellido"));
                 persona.setEdad(resultadoDeConsulta.getInt("Edad"));
                 persona.setSexo(resultadoDeConsulta.getString("sexo"));
+                persona.setFecha(resultadoDeConsulta.getDate("Fecha"));
 
                 Personas.add(persona);
 
@@ -50,15 +51,16 @@ public class ClsPersona {
 
     public void AgregarPersona(Persona Per) {
         try {
-            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?)");
+            CallableStatement Statement = conectar.prepareCall("call SP_I_Persona(?,?,?,?,?)");
 
             Statement.setString("PNombre", Per.getNombre());
             Statement.setString("PApellido", Per.getApellido());
             Statement.setInt("PEdad", Per.getEdad());
             Statement.setString("PSexo", Per.getSexo());
+            Statement.setDate("pFecha", new java.sql.Date (Per.getFecha().getTime()));
             Statement.execute();
             JOptionPane.showMessageDialog(null, " Persona guardada");
-         
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -71,7 +73,7 @@ public class ClsPersona {
             Statement.setInt("PIdPersonas", Per.getIdPersona());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Persona Eliminada");
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -87,9 +89,9 @@ public class ClsPersona {
             Statement.setInt("PEdad", Persona.getEdad());
             Statement.setString("PSexo", Persona.getSexo());
             Statement.execute();
-             
+
             JOptionPane.showMessageDialog(null, " Persona Actualizada Correctamente");
-           
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
